@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{%- from "govuk_frontend_jinja/components/date-input/macro.html" import govukDateInput -%}
+{%- from "govuk_frontend_jinja/components/input/macro.html" import govukInput -%}
+{%- from "govuk_frontend_jinja/components/button/macro.html" import govukButton -%}
+{%- from 'govuk_frontend_jinja/components/inset-text/macro.html' import govukInsetText -%}
+{% block beforeContent %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">GDS Circuits 2.0</h1>
+
+<form action="/results" method="post" novalidate>
+        {{ form.csrf_token }}
+
+{
+           {{ form.circuits_date(params={
+             'type': 'string',
+             'spellcheck': false
+           }) }}
+           {{ form.choose_session_effort(params={
+            'type': 'string',
+            'spellcheck': false
+          }) }}
+          {{ form.choose_session_type(params={
+            'type': 'string',
+            'spellcheck': false
+          }) }}
+
+
+           {{ form.submit }}
+       </form>
+
+  </div>
+</div>
+{% endblock %}

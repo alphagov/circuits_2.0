@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{%- from "govuk_frontend_jinja/components/table/macro.html" import govukTable -%}
+{%- from 'govuk_frontend_jinja/components/error-summary/macro.html' import govukErrorSummary -%}
+{%- from "govuk_frontend_jinja/components/date-input/macro.html" import govukDateInput -%}
+{%- from "govuk_frontend_jinja/components/input/macro.html" import govukInput -%}
+{%- from "govuk_frontend_jinja/components/button/macro.html" import govukButton -%}
+{%- from 'govuk_frontend_jinja/components/inset-text/macro.html' import govukInsetText -%}
+{% block beforeContent %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <a href="#" class="govuk-back-link">Back</a>
+  <main class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third search-panel">
+        <h2 class="govuk-heading-m">GDS Circuits 2.0</h2>
+        <p class="govuk-body">Today's circuits session</p>
+
+            <form action="" method="post" novalidate>
+        {{ form.csrf_token }}
+
+
+           {{ form.circuits_date(params={
+             'type': 'string',
+             'autocomplete': 'string',
+             'spellcheck': false
+           }) }}
+
+           {{ form.submit }}
+       </form>
+
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+              <h1 class="govuk-heading-l">Today's circuits session</h1>
+
+{% set df_headers=[] %}
+{{ df_headers.append({ "text":'Exercise'|safe }) or "" }}
+{{ df_headers.append({ "text":'Difficulty'|safe }) or "" }}
+{{ df_headers.append({ "text":'Work'|safe }) or "" }}   
+{{ df_headers.append({ "text":'Rest'|safe }) or "" }}               
+
+
+{% set rows=[] %}
+{% for row in tables %}
+    {% set cols = [] %}
+
+      {{ cols.append({ "text": row['exercise']|safe }) or "" }}
+      {{ cols.append({ "text": row['difficulty']|safe }) or "" }}
+      {{ cols.append({ "text": row['work']|safe }) or "" }}
+      {{ cols.append({ "text": row['rest']|safe }) or "" }}
+
+
+      {{ rows.append(cols) or "" }}
+{% endfor %}
+
+{{ govukTable({
+      "caption": "",
+      "captionClasses": "govuk-table__caption--l",
+      "firstCellIsHeader": true,
+      "head": df_headers,
+      "rows": rows
+      })
+      }}
+          <p><a href="{{ csv_link }}" class="govuk-link">Download csv of the data</a></p>
+
+  </div>
+</div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+{% endblock %}
+

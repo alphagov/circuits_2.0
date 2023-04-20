@@ -1,6 +1,6 @@
 # import os
 
-# from google.cloud import bigquery
+from google.cloud import bigquery
 
 # from datetime import datetime
 # # from google.auth import default
@@ -12,6 +12,21 @@
 # # creds, project_id = default()
 
 # client = bigquery.Client()
+def get_workout_type():
+    client = bigquery.Client()
+    
+    query = """
+    SELECT *
+    FROM `circuits-2point0.Circuits.Workout_types`
+    """
+    query_job = client.query(query)
+    results = {}
+    for w in query_job:
+        results[w['New name']] =dict(w.items())
+
+    return results
+
+get_workout_type()
 
 # def get_summary_data(start_date, end_date, desiredPage):
 #     start_date = datetime.strftime(start_date, '%Y%m%d')

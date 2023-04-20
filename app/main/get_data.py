@@ -26,6 +26,21 @@ def get_workout_type():
 
     return results
 
+def get_exercises():
+    client = bigquery.Client(project='circuits-2point0')
+
+    query = """
+    SELECT *
+    FROM `circuits-2point0.Circuits.Exercises`
+    """
+
+    query_job = client.query(query)
+    results = []
+    for row in query_job:
+        results.append(dict(row.items()))
+
+    return results
+
 # def get_summary_data(start_date, end_date, desiredPage):
 #     start_date = datetime.strftime(start_date, '%Y%m%d')
 #     end_date = datetime.strftime(end_date, '%Y%m%d')

@@ -1,10 +1,11 @@
-from app.main.exercises import exercises
-from app.main.get_data import get_workout_type
+# from app.main.exercises import exercises
+from app.main.get_data import get_workout_type, get_exercises
 import random
 
 def get(type):
     workouts = get_workout_type()
     workout_type = workouts[type]['New name']
+    exercises = get_exercises()
     type_dict = [x for x in exercises if x[workout_type] == 'Y']
 
     
@@ -16,7 +17,7 @@ def get(type):
 
     
 
-    workout_exercises = [d['exercise'] for d in workout_exercises_objects]
+    # workout_exercises = [d['exercise'] for d in workout_exercises_objects]
 
     return workout_exercises_objects
 

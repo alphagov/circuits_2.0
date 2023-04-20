@@ -4,7 +4,7 @@ image := europe-west2-docker.pkg.dev/circuits-2point0/circuits/circuits
 
 
 local-dev:
-	python -m app
+	gunicorn circuits:app
 
 docker-build:
 	docker build -t $(image) .

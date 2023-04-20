@@ -42,7 +42,7 @@ class CircuitsForm(FlaskForm):
         "Choose session tpe",
         widget=GovRadioInput(),
         validators=[InputRequired(message="Choose an session you want to do")],
-        choices=[("hiit", "HIIT"), ("twelve", "12 by 12 by 6"), ("oneby6", "One min by 6 by 3")],
+        choices=[("Intervals", "HIIT"), ("AMPRAP", "12 by 12 by 6"), ("Minute_blasts", "One min by 6 by 3")],
         default="no",
     )
 

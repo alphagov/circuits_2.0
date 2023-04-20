@@ -12,6 +12,7 @@ RUN chmod 444 *.py
 RUN chmod 444 requirements.txt
 
 ENV PORT 8080
+ENV SERVICE_NAME 'GDS Circuits generator'
 
 EXPOSE 8080
 

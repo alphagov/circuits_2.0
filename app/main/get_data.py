@@ -13,7 +13,7 @@ from google.cloud import bigquery
 
 # client = bigquery.Client()
 def get_workout_type():
-    client = bigquery.Client()
+    client = bigquery.Client(project='circuits-2point0')
     
     query = """
     SELECT *
@@ -25,8 +25,6 @@ def get_workout_type():
         results[w['New name']] =dict(w.items())
 
     return results
-
-get_workout_type()
 
 # def get_summary_data(start_date, end_date, desiredPage):
 #     start_date = datetime.strftime(start_date, '%Y%m%d')

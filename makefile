@@ -10,7 +10,7 @@ docker-build:
 	docker build -t $(image) .
 
 docker-run:
-	docker run -p 8000:8080 $(image)
+	docker run -p 8000:8080 -v ~/.config:/root/.config $(image)
 
 docker-clean:
 	docker container prune -f

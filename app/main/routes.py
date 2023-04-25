@@ -15,12 +15,6 @@ def index():
 
     if form.validate_on_submit():
         start_date = form.circuits_date.data
-
-        #df = get_summary_data(start_date)
-        #top_ten_df = df.head(10)
-        #csv_link = url_for('main.csv_results', start_date=datetime.strftime(start_date, '%Y%m%d'), end_date=datetime.strftime(end_date, '%Y%m%d'), desired_url=desired_url)
-        #return render_template("results.html", tables=top_ten_df.values.tolist(), df_header=top_ten_df.columns.values, csv_link=csv_link, form=form)
-    
         exercises = workout.get(form.choose_session_type.data)
         return render_template("results2.html", tables=exercises, form=form)
 

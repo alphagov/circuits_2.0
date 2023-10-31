@@ -4,11 +4,10 @@ from google.auth import default
 import google.auth
 credentials, project_id = google.auth.default()
 creds, project_id = default()
-# client = bigquery.Client()
 
 
 def get_workout_type():
-    client = bigquery.Client(project='circuits-2point0')
+    client = bigquery.Client(project='circuits-2point0', credentials=creds)
 
     query = """
     SELECT *
@@ -18,7 +17,6 @@ def get_workout_type():
     results = {}
     for w in query_job:
         results[w['New name']] = dict(w.items())
-
     return results
 
 

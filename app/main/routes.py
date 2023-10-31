@@ -9,7 +9,7 @@ from app.main.forms import CookiesForm, CircuitsForm
 def index():
     form = CircuitsForm()
     if form.validate_on_submit():
-        exercises = workout.get(form.choose_session_type.data)
+        exercises = workout.get(form.choose_session_type.data, form.choose_session_effort.data)
         return render_template("results2.html", tables=exercises, form=form)
 
     return render_template("circuits_form.html", form=form)
@@ -93,9 +93,6 @@ def csrf_error(error):
 
 @bp.after_request
 def add_security_headers(resp):
-    csp = """default-src 'self';
-    script-src 'self'
-    'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU='
-    'sha256-l1eTVSK8DTnK8+yloud7wZUqFrI0atVo6VlC6PJvYaQ=';"""
+    csp = "default-src 'self'; script-src 'self' 'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU=' 'sha256-l1eTVSK8DTnK8+yloud7wZUqFrI0atVo6VlC6PJvYaQ=';"
     resp.headers['Content-Security-Policy'] = csp
     return resp

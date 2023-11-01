@@ -36,7 +36,7 @@ class CircuitsForm(FlaskForm):
         "Choose session tpe",
         widget=GovRadioInput(),
         validators=[InputRequired(message="Choose an session you want to do")],
-        choices=[("easy", "Easy set"), ("medium", "Medium effort"), ("challenging", "Challenging")],
+        choices=[("easy", "Easy set"), ("medium", "Medium effort"), ("hard", "Challenging")],
         default="no",
     )
     choose_session_type = RadioField(

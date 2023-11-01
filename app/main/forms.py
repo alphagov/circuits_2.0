@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from govuk_frontend_wtf.wtforms_widgets import GovRadioInput, GovSubmitInput, GovTextInput, GovDateInput
-from wtforms.fields import RadioField, SubmitField, StringField, DateField
-from wtforms.validators import InputRequired, Length, Optional, DataRequired
+from govuk_frontend_wtf.wtforms_widgets import GovRadioInput, GovSubmitInput, GovDateInput
+from wtforms.fields import RadioField, SubmitField, DateField
+from wtforms.validators import InputRequired
+
 
 class CookiesForm(FlaskForm):
     functional = RadioField(
@@ -20,13 +21,13 @@ class CookiesForm(FlaskForm):
     )
     save = SubmitField("Save cookie settings", widget=GovSubmitInput())
 
-class CircuitsForm(FlaskForm):
 
+class CircuitsForm(FlaskForm):
 
     circuits_date = DateField(
                 "Please enter the start date for the period you need data for",
                 widget=GovDateInput(),
-                format = "%d %m %Y",
+                format="%d %m %Y",
                 validators=[
                     InputRequired()
                 ]
@@ -47,4 +48,3 @@ class CircuitsForm(FlaskForm):
     )
 
     submit = SubmitField("Continue", widget=GovSubmitInput())
-
